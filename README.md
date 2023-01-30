@@ -1,3 +1,6 @@
 ### Demo
 
-https://code-sync.codersgyan.com/
+Gunjan Jain
+Ketan Jain
+Prashant Pathariya
+Divyanshu Gupta

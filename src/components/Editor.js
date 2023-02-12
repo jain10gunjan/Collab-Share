@@ -15,7 +15,7 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
                 document.getElementById('realtimeEditor'),
                 {
                     mode: { name: 'javascript', json: true },
-                    theme: 'dracula',
+                    theme: 'xq-light',
                     autoCloseTags: true,
                     autoCloseBrackets: true,
                     lineNumbers: true,
@@ -27,12 +27,16 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
                 const code = instance.getValue();
                 onCodeChange(code);
                 if (origin !== 'setValue') {
+
                     socketRef.current.emit(ACTIONS.CODE_CHANGE, {
                         roomId,
                         code,
                     });
+
                 }
             });
+
+
         }
         init();
     }, []);

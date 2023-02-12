@@ -52,6 +52,7 @@ const EditorPage = () => {
                 }
             );
 
+
             // Listening for disconnected
             socketRef.current.on(
                 ACTIONS.DISCONNECTED,

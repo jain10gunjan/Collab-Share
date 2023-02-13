@@ -14,11 +14,13 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
             editorRef.current = Codemirror.fromTextArea(
                 document.getElementById('realtimeEditor'),
                 {
-                    mode: { name: 'javascript', json: true },
+                    //mode: { name: 'javascript', json: true },
+                    mode: "text/html",
                     theme: 'xq-light',
                     autoCloseTags: true,
                     autoCloseBrackets: true,
                     lineNumbers: true,
+                    lineWrapping: true,
                 }
             );
 

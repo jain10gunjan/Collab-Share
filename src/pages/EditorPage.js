@@ -28,7 +28,7 @@ const EditorPage = () => {
             function handleErrors(e) {
                 console.log('socket error', e);
                 toast.error('Socket connection failed, try again later.');
-                reactNavigator('/');
+                //reactNavigator('/');
             }
 
             socketRef.current.emit(ACTIONS.JOIN, {
@@ -93,6 +93,7 @@ const EditorPage = () => {
     }
 
     return (
+    
         <div className="mainWrap">
             <div className="aside">
                 <div className="asideInner">
@@ -126,6 +127,9 @@ const EditorPage = () => {
                 />
             </div>
         </div>
+
+
+
     );
 };
 

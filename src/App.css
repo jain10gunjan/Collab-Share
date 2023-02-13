@@ -98,6 +98,16 @@ footer a:hover {
     grid-template-columns: 230px 1fr;
 }
 
+
+.mobileHide { display: none; }
+
+  /* Smartphone Portrait and Landscape */
+  @media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px){
+     .mobileHide { display: none;}
+  }
+
 .aside {
     background: #6B818C;
     padding: 16px;
@@ -153,6 +163,10 @@ footer a:hover {
     font-size: 20px;
     line-height: 1.6;
     padding-top: 20px;
+}
+
+.CodeMirror-wrap pre {
+    word-break: break-word;
 }
 
 .footerText{

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Collab Share",
+  "name": "A live text collaborator.",
   "icons": [
     {
       "src": "favicon.ico",

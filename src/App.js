@@ -6,8 +6,8 @@ import EditorPage from './pages/EditorPage';
 
 function App() {
     return (
-        <>
-            <div>
+        
+           <div>
                 <Toaster
                     position="top-right"
                     toastOptions={{
@@ -18,7 +18,7 @@ function App() {
                         },
                     }}
                 ></Toaster>
-            </div>
+            
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
@@ -28,7 +28,7 @@ function App() {
                     ></Route>
                 </Routes>
             </BrowserRouter>
-        </>
+            </div>
     );
 }
 

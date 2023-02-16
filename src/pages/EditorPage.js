@@ -11,6 +11,13 @@ import {
     useParams,
 } from 'react-router-dom';
 
+
+
+
+
+
+
+
 const EditorPage = () => {
     const socketRef = useRef(null);
     const codeRef = useRef(null);
@@ -18,6 +25,9 @@ const EditorPage = () => {
     const { roomId } = useParams();
     const reactNavigator = useNavigate();
     const [clients, setClients] = useState([]);
+ 
+
+    
 
     useEffect(() => {
         const init = async () => {
@@ -92,11 +102,25 @@ const EditorPage = () => {
         return <Navigate to="/" />;
     }
 
+    const span1 = '<span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:29;"></span><span style="--i:26;"></span><span style="--i:28;"></span><span style="--i:17;"></span><span style="--i:27;"></span><span style="--i:18;"></span><span style="--i:26;"></span><span style="--i:19;"></span><span style="--i:24;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span>';
+
+
     return (
     
+       
+
+
+        <div className='containerEditor'>
         <div className="mainWrap">
+            
             <div className="aside">
+            <div className='bubblesEditor' dangerouslySetInnerHTML={{__html: span1}}>
+                
+                
+
+                </div>
                 <div className="asideInner">
+                  
                     <div className="logo">
                         <h2>COLLAB-SHARE</h2>
                     </div>
@@ -117,6 +141,13 @@ const EditorPage = () => {
                     Leave
                 </button>
             </div>
+            
+
+
+
+            
+
+            
             <div className="editorWrap">
                 <Editor
                     socketRef={socketRef}
@@ -126,11 +157,23 @@ const EditorPage = () => {
                     }}
                 />
             </div>
+
+            <div className='smallScreen'>
+
+            
+            
+                <h1>Please switch to desktop or use a system. This webapp works best on big screen.....</h1>
+                </div>
+            
         </div>
+        </div>
+        
 
 
 
     );
 };
+
+
 
 export default EditorPage;

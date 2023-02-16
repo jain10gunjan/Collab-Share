@@ -1,5 +1,9 @@
+.smallScreen{
+    display: none;
+}
+
 #root{
-    background: #9cf6f6;
+    background: rgba(2,0,36,0.5);
 }
 
 .homePageWrapper {
@@ -8,14 +12,17 @@
     justify-content: center;
     color: #fff;
     height: 100vh;
+    width: 100%;
 }
 
 .formWrapper {
     background: #282a36;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     width: 400px;
-    max-width: 90%;
+    max-width: 70%;
+    background: linear-gradient(90deg, rgba(2,0,36,0.5), rgba(9,9,121,0.5)) ,url(https://images.pexels.com/photos/3585088/pexels-photo-3585088.jpeg?auto=compress&cs=tinysrgb&w=600) center;
+    background-size: cover;
 }
 
 footer {
@@ -93,18 +100,24 @@ footer a:hover {
     border-color: #368654;
 }
 
+
 .mainWrap {
+    
     display: grid;
     grid-template-columns: 230px 1fr;
+
 }
 
 
+
 .aside {
-    background: #6B818C;
+    background: #0d181e;
     padding: 16px;
     color: #fff;
     display: flex;
     flex-direction: column;
+    
+
 }
 .asideInner {
     flex: 1;
@@ -151,7 +164,7 @@ footer a:hover {
 }
 .CodeMirror {
     min-height: calc(100vh - 20px);
-    font-size: 20px;
+    font-size: 15px;
     line-height: 1.6;
     padding-top: 20px;
 }
@@ -163,3 +176,135 @@ footer a:hover {
 .footerText{
     color: #eee;
 }
+
+
+@media screen and (max-width: 600px) {
+    .aside {
+      visibility: hidden;
+      clear: both;
+      float: left;
+      margin: 10px auto 5px 20px;
+      width: 28%;
+      display: none;
+    }
+
+    .editorWrap {
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+      }
+
+      /*
+      .formWrapper{
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+      }
+      */
+
+      .smallScreen{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 100vh;
+        visibility: visible;
+        background: #282a36;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 70%;
+    background: linear-gradient(90deg, rgba(2,0,36,0.5), rgba(9,9,121,0.5)) ,url(https://images.pexels.com/photos/3585088/pexels-photo-3585088.jpeg?auto=compress&cs=tinysrgb&w=600) center;
+    background-size: cover;
+      }
+  }
+
+  /* Animated Background */
+  .container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .bubbles{
+    position: relative;
+    display: flex;
+    
+
+  }
+
+  .bubbles span{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background-color: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
+    animation: animate 30s linear infinite;
+    animation-duration: calc(200s / var(--i));
+  }
+
+  .bubbles span:nth-child(even){
+    background-color: #ff2d75;
+    box-shadow: 0 0 0 10px #ff2d7544, 0 0 50px #ff2d75, 0 0 100px #ff2d75;
+
+  }
+
+  @keyframes animate{
+    0%{
+        transform: translateY(100vh) scale(0);
+    }
+    100%{
+        transform: translateY(-30vh) scale(1);
+    }
+  }
+
+  /* EditorPage Animation */
+  .containerEditor{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .bubblesEditor{
+    position: relative;
+    display: flex;
+    
+
+  }
+
+  .bubblesEditor span{
+    position: relative;
+    width: 10px;
+    height: 5px;
+    background-color: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(125s / var(--i));
+  }
+
+  .bubblesEditor span:nth-child(even){
+    background-color: #ff2d75;
+    box-shadow: 0 0 0 10px #ff2d7544, 0 0 50px #ff2d75, 0 0 100px #ff2d75;
+
+  }
+
+  @keyframes animate{
+    0%{
+        transform: translateY(100vh) scale(0);
+    }
+    100%{
+        transform: translateY(-30vh) scale(1);
+    }
+  }

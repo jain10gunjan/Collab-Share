@@ -29,6 +29,11 @@ function getAllConnectedClients(roomId) {
 io.on('connection', (socket) => {
     console.log('socket connected', socket.id);
 
+    socket.on('send-ok', (username) => {
+        io.emit('ok-message', username);
+      });
+
+      
     socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
         userSocketMap[socket.id] = username;
         socket.join(roomId);
@@ -63,6 +68,7 @@ io.on('connection', (socket) => {
         socket.leave();
     });
 });
+
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));

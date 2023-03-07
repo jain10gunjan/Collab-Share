@@ -5,6 +5,7 @@ const ACTIONS = {
     CODE_CHANGE: 'code-change',
     SYNC_CODE: 'sync-code',
     LEAVE: 'leave',
+    BROADCAST: 'broadcast',
 };
 
 module.exports = ACTIONS;

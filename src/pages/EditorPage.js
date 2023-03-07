@@ -25,20 +25,30 @@ const EditorPage = () => {
     const { roomId } = useParams();
     const reactNavigator = useNavigate();
     const [clients, setClients] = useState([]);
- 
+    const [okMessageSent, setOkMessageSent] = useState(false);
+
 
     
 
     useEffect(() => {
         const init = async () => {
+            console.log(location.state?.username);
             socketRef.current = await initSocket();
             socketRef.current.on('connect_error', (err) => handleErrors(err));
             socketRef.current.on('connect_failed', (err) => handleErrors(err));
 
+            socketRef.current.on('ok-message', (username) => {
+                console.log(username);
+                toast(`${username}, wants to type...`);
+                setOkMessageSent(true);
+              });
+            
+            
+
             function handleErrors(e) {
                 console.log('socket error', e);
                 toast.error('Socket connection failed, try again later.');
-                //reactNavigator('/');
+                reactNavigator('/');
             }
 
             socketRef.current.emit(ACTIONS.JOIN, {
@@ -84,6 +94,8 @@ const EditorPage = () => {
         };
     }, []);
 
+    
+
     async function copyRoomId() {
         try {
             await navigator.clipboard.writeText(roomId);
@@ -101,6 +113,14 @@ const EditorPage = () => {
     if (!location.state) {
         return <Navigate to="/" />;
     }
+
+    const handleButtonClick = () => {
+        const username = location.state?.username;
+        socketRef.current.emit('send-ok', username);
+      };
+      
+
+
 
     const span1 = '<span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:29;"></span><span style="--i:26;"></span><span style="--i:28;"></span><span style="--i:17;"></span><span style="--i:27;"></span><span style="--i:18;"></span><span style="--i:26;"></span><span style="--i:19;"></span><span style="--i:24;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span>';
 
@@ -140,6 +160,10 @@ const EditorPage = () => {
                 <button className="btn leaveBtn" onClick={leaveRoom}>
                     Leave
                 </button>
+                
+  <button className="btn leaveBtn" onClick={handleButtonClick}>
+    Raise
+  </button>
             </div>
             
 

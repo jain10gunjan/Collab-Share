@@ -162,6 +162,21 @@ footer a:hover {
 .leaveBtn:hover{
     background: #991E29;
 }
+
+.raiseBtn {
+    width: 100%;
+    margin-top: 20px;
+    color: #eee;
+    background-color: #83da44;
+    margin-left: auto;
+}
+
+.raiseBtn:hover{
+    background: #0bf003;
+}
+
+
+
 .CodeMirror {
     min-height: calc(100vh - 20px);
     font-size: 15px;

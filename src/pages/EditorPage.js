@@ -161,7 +161,7 @@ const EditorPage = () => {
                     Leave
                 </button>
                 
-  <button className="btn leaveBtn" onClick={handleButtonClick}>
+  <button className="btn raiseBtn" onClick={handleButtonClick}>
     Raise
   </button>
             </div>

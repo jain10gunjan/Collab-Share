@@ -1,17 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
 import Client from '../components/Client';
 import Editor from '../components/Editor';
 import { initSocket } from '../socket';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
     useLocation,
     useNavigate,
     Navigate,
     useParams,
 } from 'react-router-dom';
-
-
 
 
 
@@ -26,24 +25,35 @@ const EditorPage = () => {
     const reactNavigator = useNavigate();
     const [clients, setClients] = useState([]);
     const [okMessageSent, setOkMessageSent] = useState(false);
+    
+
+
+
 
 
     
+    const toastId = React.useRef(null); 
 
     useEffect(() => {
         const init = async () => {
-            console.log(location.state?.username);
+            console.log(location.state?.roomType);
             socketRef.current = await initSocket();
             socketRef.current.on('connect_error', (err) => handleErrors(err));
             socketRef.current.on('connect_failed', (err) => handleErrors(err));
 
             socketRef.current.on('ok-message', (username) => {
                 console.log(username);
-                toast(`${username}, wants to type...`);
+                if(! toast.isActive(toastId.current)) {
+                    toastId.current = toast(username);
+                  }
+
+                /*if (!toast.isActive(username)) { // Check if a similar toast is not already active
+                    toast.success(username , { autoClose: 400 });
+                }*/
                 setOkMessageSent(true);
               });
             
-            
+              
 
             function handleErrors(e) {
                 console.log('socket error', e);
@@ -54,12 +64,14 @@ const EditorPage = () => {
             socketRef.current.emit(ACTIONS.JOIN, {
                 roomId,
                 username: location.state?.username,
-            });
+                roomType: location.state?.roomType,
+                
+            } );
 
             // Listening for joined event
             socketRef.current.on(
                 ACTIONS.JOINED,
-                ({ clients, username, socketId }) => {
+                ({ clients, username, socketId, roomref }) => {
                     if (username !== location.state?.username) {
                         toast.success(`${username} joined the room.`);
                         console.log(`${username} joined`);
@@ -115,8 +127,16 @@ const EditorPage = () => {
     }
 
     const handleButtonClick = () => {
+        //let message = prompt("Enter Custom Message");
+        let message = 'is Typing..';
         const username = location.state?.username;
-        socketRef.current.emit('send-ok', username);
+        socketRef.current.emit('send-ok', username + ' message: ' + message);
+      };
+
+      const handleButtonClick2 = () => {
+        let message = prompt("Enter Custom Message");
+        const username = location.state?.username;
+        socketRef.current.emit('send-ok', username + ' message: ' + message);
       };
       
 
@@ -160,10 +180,19 @@ const EditorPage = () => {
                 <button className="btn leaveBtn" onClick={leaveRoom}>
                     Leave
                 </button>
-                
+
+
+             {/*   
   <button className="btn raiseBtn" onClick={handleButtonClick}>
     Raise
+  </button>*/}
+ <button className="btn raiseBtn" onClick={handleButtonClick2}>
+    Raise
   </button>
+
+  
+   
+  
             </div>
             
 
@@ -172,7 +201,7 @@ const EditorPage = () => {
             
 
             
-            <div className="editorWrap">
+            <div className="editorWrap" onKeyPress={handleButtonClick}>
                 <Editor
                     socketRef={socketRef}
                     roomId={roomId}
@@ -190,6 +219,7 @@ const EditorPage = () => {
                 </div>
             
         </div>
+        <ToastContainer />
         </div>
         
 

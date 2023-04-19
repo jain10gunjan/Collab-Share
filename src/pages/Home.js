@@ -8,6 +8,8 @@ const Home = () => {
 
     const [roomId, setRoomId] = useState('');
     const [username, setUsername] = useState('');
+    const [roomType, setRoomType] = useState('writeAll'); //default room type is writeAll
+    
     const createNewRoom = (e) => {
         e.preventDefault();
         const id = uuidV4();
@@ -25,6 +27,7 @@ const Home = () => {
         navigate(`/editor/${roomId}`, {
             state: {
                 username,
+                roomType
             },
         });
     };
@@ -35,60 +38,79 @@ const Home = () => {
         }
     };
 
-    const span1 = '<span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:29;"></span><span style="--i:26;"></span><span style="--i:28;"></span><span style="--i:17;"></span><span style="--i:27;"></span><span style="--i:18;"></span><span style="--i:26;"></span><span style="--i:19;"></span><span style="--i:24;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span></span><span style="--i:24;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span><span style="--i:11;"></span><span style="--i:28;"></span><span style="--i:17;"></span><span style="--i:27;"></span><span style="--i:18;"></span><span style="--i:26;"></span><span style="--i:19;"></span><span style="--i:24;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span><span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:29;"></span><span style="--i:24;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span><span style="--i:11;"></span><span style="--i:29;"></span><span style="--i:26;"></span><span style="--i:28;"></span><span style="--i:21;"></span><span style="--i:29;"></span><span style="--i:26;"></span><span style="--i:28;"></span><span style="--i:17;"></span><span style="--i:27;"></span><span style="--i:15;"></span><span style="--i:11;"></span><span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:29;"></span><span style="--i:26;"></span><span style="--i:28;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:21;"></span><span style="--i:15;"></span><span style="--i:11;"></span>';
+    const handleRoomTypeChange = (e) => {
+        setRoomType(e.target.value);
+    };
+
+    
+
+    // dangerouslySetInnerHTML={{__html: span1}}
 
     return (
         <div className='container'>
-            <div className='bubbles' dangerouslySetInnerHTML={{__html: span1}}>
-                
-                
-
-                </div>
-        <div className="homePageWrapper">
-        
-            <div className="formWrapper">
-                
-            
-                <h4 className="mainLabel">Paste invitation ROOM ID</h4>
-                <div className="inputGroup">
-                    <input
-                        type="text"
-                        className="inputBox"
-                        placeholder="ROOM ID"
-                        onChange={(e) => setRoomId(e.target.value)}
-                        value={roomId}
-                        onKeyUp={handleInputEnter}
-                    />
-                    <input
-                        type="text"
-                        className="inputBox"
-                        placeholder="USERNAME"
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        onKeyUp={handleInputEnter}
-                    />
-                    <button className="btn joinBtn" onClick={joinRoom}>
-                        Join
-                    </button>
-                    <span className="createInfo">
-                        No Room No Problem, Just Create One &nbsp;
-                        <a
-                            onClick={createNewRoom}
-                            href=""
-                            className="createNewBtn"
-                        >
-                            new room
-                        </a>
-                    </span>
-                </div>
+            <div className='bubbles'>
             </div>
-            <footer>
-                <h4 className='footerText'>
-                    Built By THE TEAM OF 4.
-                </h4>
-            </footer>
-            
-        </div>
+            <div className="homePageWrapper">
+                <div className="formWrapper">
+                    <h4 className="mainLabel">Paste invitation ROOM ID</h4>
+                    <div className="inputGroup">
+                        <input
+                            type="text"
+                            className="inputBox"
+                            placeholder="ROOM ID"
+                            onChange={(e) => setRoomId(e.target.value)}
+                            value={roomId}
+                            onKeyUp={handleInputEnter}
+                        />
+                        <input
+                            type="text"
+                            className="inputBox"
+                            placeholder="USERNAME"
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
+                            onKeyUp={handleInputEnter}
+                        />
+                        <div className="radioGroup">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="writeAll"
+                                    checked={roomType === "writeAll"}
+                                    onChange={handleRoomTypeChange}
+                                />
+                                Write All
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="writeCreator"
+                                    checked={roomType === "writeCreator"}
+                                    onChange={handleRoomTypeChange}
+                                />
+                                Write Creator Only
+                            </label>
+                        </div>
+                        <button className="btn joinBtn" onClick={joinRoom}>
+                            Join
+                        </button>
+                        <span className="createInfo">
+                            No Room No Problem, Just Create One &nbsp;
+                            <a
+                                onClick={createNewRoom}
+                                href=""
+                                className="createNewBtn"
+                            >
+                                new room
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <footer>
+                    <h4 className='footerText'>
+                        Built By THE TEAM OF 4.
+                    </h4>
+                </footer>
+            </div>
         </div>
     );
 };

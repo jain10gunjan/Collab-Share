@@ -1,12 +1,12 @@
 const ACTIONS = {
     JOIN: 'join',
     JOINED: 'joined',
-    DISCONNECTED: 'disconnected',
     CODE_CHANGE: 'code-change',
     SYNC_CODE: 'sync-code',
-    LEAVE: 'leave',
-    BROADCAST: 'broadcast',
-    
+    DISCONNECTED: 'disconnected',
+    GRANT_WRITE_ACCESS: 'grant-write-access',
+    REVOKE_WRITE_ACCESS: 'revoke-write-access',
 };
+  
 
 module.exports = ACTIONS;
